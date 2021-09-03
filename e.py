@@ -11,7 +11,7 @@ app = QApplication(sys.argv)
 
 window = QMainWindow()
 
-window.setGeometry(500, 500, 500, 500)
+window.setGeometry(10, 10, 10, 10)
 
 window.setWindowTitle("Our Example Application")
 
