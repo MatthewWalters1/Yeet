@@ -5,8 +5,8 @@
     simple text box application (use a header)
 '''
 import sys
-from PyQt6.QtGui import QIcon, QAction
-from PyQt6.QtWidgets import QFileDialog, QTextEdit, QVBoxLayout, QWidget, QApplication, QMainWindow
+from PyQt6.QtGui import *
+from PyQt6.QtWidgets import *
 
 class Window(QMainWindow):
     def __init__(self):
@@ -45,9 +45,6 @@ class Window(QMainWindow):
         save_icon = QIcon.fromTheme("document-save")
         self.save_action = QAction(save_icon, "Save", self)
         self.save_action.setShortcut("Ctrl+S")
-        self.save_action.triggered.connect(self.SaveEvent)
-        file_menu.addAction(self.save_action)
-
         def SaveEvent(self):
             buffer = self.text_box.toPlainText()
 
@@ -62,11 +59,15 @@ class Window(QMainWindow):
             f.write(buffer)
             f.close()
             self.statusBar().showMessage("Saved...")
+            
+        self.save_action.triggered.connect(SaveEvent)
+        file_menu.addAction(self.save_action)
 
 if __name__ == '__main__':
-    window = Window()
 
     app = QApplication(sys.argv)
+
+    window = Window()
 
     window.show()
 
