@@ -17,7 +17,7 @@ window.setWindowTitle("Our Example Application")
 
 #created our central widget
 central_widget = QWidget()
-
+#fancy comment
 #created a vertical box layout
 layout = QVBoxLayout()
 
