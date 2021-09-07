@@ -45,24 +45,21 @@ class Window(QMainWindow):
         save_icon = QIcon.fromTheme("document-save")
         self.save_action = QAction(save_icon, "Save", self)
         self.save_action.setShortcut("Ctrl+S")
-        def SaveEvent(self):
-            buffer = self.text_box.toPlainText()
-
-            file_dialog = QFileDialog(self)
-
-            file_name = file_dialog.getSaveFileName(self, "Save File")
-
-            #this is not how you should do it, but for example purposes...
-            print(file_name)
-            #without clarifying, this assumes there is a file_name[0]
-            f = open(file_name[0], 'w')
-            f.write(buffer)
-            f.close()
-            self.statusBar().showMessage("Saved...")
             
-        self.save_action.triggered.connect(SaveEvent)
+        self.save_action.triggered.connect(self.SaveEvent)
         file_menu.addAction(self.save_action)
 
+    def SaveEvent(self):
+        buffer = self.text_box.toPlainText()
+        file_dialog = QFileDialog(self)
+        file_name = file_dialog.getSaveFileName(self, "Save File")
+        #this is not how you should do it, but for example purposes...
+        print(file_name)
+        #without clarifying, this assumes there is a file_name[0]
+        f = open(file_name[0], 'w')
+        f.write(buffer)
+        f.close()
+        self.statusBar().showMessage("Saved...")
 if __name__ == '__main__':
 
     app = QApplication(sys.argv)
