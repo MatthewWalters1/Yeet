@@ -13,7 +13,7 @@ class Window(QMainWindow):
         #this is the QMainWindow default constructor
         super().__init__()
         #Window's constructor can be whatever you want in addition to that
-        self.setGeometry(500, 500, 500, 500)
+        self.setGeometry(200, 200, 500, 500)
 
         self.setWindowTitle("Our Example Application")
 
