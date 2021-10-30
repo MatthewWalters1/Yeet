@@ -8,6 +8,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
+        # so, this window is actually not used, but it was useful in testing, and its init makes a qgraphicsscene window too
         self.setGeometry(100, 100, 600, 600) #Set window size
         palette = self.palette()
         # background color is Tennessee Orange
@@ -41,10 +42,14 @@ class MainWindow(QMainWindow):
         centralwidget.setLayout(self.mainLayout)
         self.setCentralWidget(centralwidget)
 
-        self.scene = QGraphicsScene(-50, -70, 1000, 1000)
+        self.scene = QGraphicsScene(-50, -50, 1000, 1000)
         self.view = QGraphicsView(self.scene)
         self.map = map.mapObject()
         self.scene.addItem(self.map)
+        self.view.setLayout(self.mainLayout)
+        palette = self.view.palette()
+        palette.setColor(QPalette.ColorRole.Window, QColor(255, 130, 0))
+        self.view.setPalette(palette)
         self.view.show()
 
     def settingsClicked(self, event):
