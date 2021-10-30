@@ -7,8 +7,9 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self.setGeometry(100, 100, 600, 600) #Set window size and color
+        self.setGeometry(100, 100, 600, 600) #Set window size
         palette = self.palette()
+        # background color is Tennessee Orange
         palette.setColor(QPalette.ColorRole.Window, QColor(255, 130, 0))
         self.setPalette(palette)
 
@@ -64,7 +65,7 @@ class MainWindow(QMainWindow):
                                         "max-height: 15 em;"
                                         "padding: 6 px;")
         self.settingsMenu.addButton(self.resumeButton, QMessageBox.ButtonRole.DestructiveRole)
-        self.resumeButton.clicked.connect(self.resumeClicked)
+        # self.resumeButton.clicked.connect(self.resumeClicked)
         self.settingsMenu.setEscapeButton(self.resumeButton)
 
         # Adds an exit button to settingsMenu
@@ -88,9 +89,6 @@ class MainWindow(QMainWindow):
         # self.addWidget(self.settingsMenu)
                 
         self.settingsMenu.open()
-    
-    def resumeClicked(self, event):
-        print("hi")
 
     def exitClicked(self, event):
         sys.exit()
