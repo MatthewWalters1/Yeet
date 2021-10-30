@@ -10,7 +10,9 @@ class road(QGraphicsPixmapItem):
     def __init__(self):
         super().__init__()
         self.connected = []
-        
+
 class edge():
     def __init__(self):
         self.distance = random.randrange(0,10)
+        self.to
+        self.frum

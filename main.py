@@ -2,7 +2,7 @@ from PyQt6.QtWidgets import *
 from PyQt6.QtCore import QTimer, Qt
 from PyQt6.QtGui import QColor, QPalette, QFont, QBrush, QPixmap
 import sys
-import map
+import map, Dijkstra
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -44,12 +44,35 @@ class MainWindow(QMainWindow):
 
         self.scene = QGraphicsScene(-50, -50, 1000, 1000)
         self.view = QGraphicsView(self.scene)
+
         self.map = map.mapObject()
         self.scene.addItem(self.map)
+
         self.view.setLayout(self.mainLayout)
-        palette = self.view.palette()
-        palette.setColor(QPalette.ColorRole.Window, QColor(255, 130, 0))
-        self.view.setPalette(palette)
+        
+        # 4 roads
+        self.roads = []
+        self.A = map.road()
+        self.B = map.road()
+        self.C = map.road()
+        self.D = map.road()
+
+        # connections to other nodes
+        self.A.connected.append(self.B)
+        self.A.connected.append(self.D)
+        self.B.connected.append(self.D)
+        self.B.connected.append(self.C)
+        self.D.connected.append(self.C)
+        self.C.connected.append(self.A)
+
+        # adding the roads to roads
+        self.roads.append(self.A)
+        self.roads.append(self.B)
+        self.roads.append(self.C)
+        self.roads.append(self.D)
+
+        # self.array = Dijkstra.array(self.roads)
+
         self.view.show()
 
     def settingsClicked(self, event):
