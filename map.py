@@ -1,5 +1,6 @@
 from PyQt6.QtWidgets import QGraphicsPixmapItem, QGraphicsItem
 from PyQt6.QtGui import QPixmap
+import random
 
 class mapObject(QGraphicsPixmapItem):
     def __init__(self):
@@ -7,7 +8,7 @@ class mapObject(QGraphicsPixmapItem):
         self.setPixmap(QPixmap("Images/map3.jpg"))
 
 class road(QGraphicsPixmapItem):
-    def __init__(self, imageName):
+    def __init__(self):
         super().__init__()
         self.connected = []
         # self.setPixmap(imageName)
@@ -15,5 +16,6 @@ class road(QGraphicsPixmapItem):
 class edge():
     def __init__(self):
         self.distance = random.randrange(0,10)
-        self.to
-        self.frum
+        self.fakeroad = road()
+        self.to = self.fakeroad
+        self.frum = self.fakeroad
