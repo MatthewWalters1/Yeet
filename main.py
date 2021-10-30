@@ -2,6 +2,7 @@ from PyQt6.QtWidgets import *
 from PyQt6.QtCore import QTimer, Qt
 from PyQt6.QtGui import QColor, QPalette, QFont, QBrush, QPixmap
 import sys
+import map
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -41,6 +42,9 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(centralwidget)
 
         self.scene = QGraphicsScene(-50, -50, 600, 600)
+        self.view = QGraphicsView(self.scene)
+        self.map = map.mapObject()
+        # self.view.show()
 
     def settingsClicked(self, event):
         self.settingsMenu = QMessageBox()
