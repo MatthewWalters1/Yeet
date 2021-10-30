@@ -41,10 +41,11 @@ class MainWindow(QMainWindow):
         centralwidget.setLayout(self.mainLayout)
         self.setCentralWidget(centralwidget)
 
-        self.scene = QGraphicsScene(-50, -50, 600, 600)
+        self.scene = QGraphicsScene(-50, -70, 1000, 1000)
         self.view = QGraphicsView(self.scene)
         self.map = map.mapObject()
-        # self.view.show()
+        self.scene.addItem(self.map)
+        self.view.show()
 
     def settingsClicked(self, event):
         self.settingsMenu = QMessageBox()
@@ -101,6 +102,6 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
 
     window = MainWindow()
-    window.show()
+    #window.show()
 
     sys.exit(app.exec())
