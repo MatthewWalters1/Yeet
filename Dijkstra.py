@@ -2,9 +2,11 @@ import map
 class array():
     def __init__(self, roads):
         self.edges = []
+        x = 0
         for i in roads:
             for path in i.connected:
-                print("hi")
+                x += 1
+                print(str(x))
                 a = map.edge()
                 a.frum = i
                 a.to = path
