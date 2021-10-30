@@ -1,7 +1,3 @@
-'''
-credit to: educative.io "How to implement Dijkstra's algorithm in python"
-'''
-
 def array():
     def __init__(roads):
         for i in roads:
