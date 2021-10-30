@@ -71,7 +71,7 @@ class MainWindow(QMainWindow):
         self.roads.append(self.C)
         self.roads.append(self.D)
 
-        # self.array = Dijkstra.array(self.roads)
+        self.array = Dijkstra.array(self.roads)
 
         self.view.show()
 

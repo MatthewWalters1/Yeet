@@ -7,9 +7,10 @@ class mapObject(QGraphicsPixmapItem):
         self.setPixmap(QPixmap("Images/map3.jpg"))
 
 class road(QGraphicsPixmapItem):
-    def __init__(self):
+    def __init__(self, imageName):
         super().__init__()
         self.connected = []
+        # self.setPixmap(imageName)
 
 class edge():
     def __init__(self):
