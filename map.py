@@ -3,19 +3,19 @@ from PyQt6.QtGui import QPixmap
 import random
 
 class mapObject(QGraphicsPixmapItem):
-    def __init__(self):
+    def __init__(self, imageName):
         super().__init__()
-        self.setPixmap(QPixmap("Images/map3.jpg"))
+        self.setPixmap(QPixmap(imageName))
 
 class road(QGraphicsPixmapItem):
-    def __init__(self):
+    def __init__(self, imageName):
         super().__init__()
         self.connected = []
-        # self.setPixmap(imageName)
+        self.setPixmap(QPixmap(imageName))
 
 class edge():
     def __init__(self):
         self.distance = random.randrange(0,10)
-        self.fakeroad = road()
+        self.fakeroad = road("Images/trashmapsicon.png")
         self.to = self.fakeroad
         self.frum = self.fakeroad
