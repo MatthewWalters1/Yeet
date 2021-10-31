@@ -3,7 +3,7 @@ from PyQt6.QtCore import QTimer, Qt
 from PyQt6.QtGui import QColor, QPalette, QFont, QBrush, QPixmap
 import sys, random
 from main_ui import Main_UI
-import map, Dijkstra
+import map
 
 class Main_Window(QMainWindow, Main_UI):
     def __init__(self):
@@ -447,7 +447,7 @@ class Main_Window(QMainWindow, Main_UI):
         self.roads.append(self.n60)
         self.roads.append(self.n61)
 
-        self.array = Dijkstra.array(self.roads)
+        #self.array = Dijkstra.array(self.roads)
         self.thing = map.mapObject("Images/lines/38.png")
 
         self.names = []
