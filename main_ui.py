@@ -26,41 +26,47 @@ import map
 class Main_UI():
 
     def setup_UI(self, Main_Window):
-        '''
-          - Set up the entire UI
-          - Intializes weather info with blank values
-          - It's set up to have a series of layouts that go together
-        '''
+
         self.central_widget = QtWidgets.QWidget(Main_Window)
         self.central_widget.setObjectName("central_widget")
 
-        # Gradient pulled from google, need to find a way have transparent widgets with this just as a background
         self.central_widget.setStyleSheet("* {color: qlineargradient(spread:pad, x1:0 y1:0, x2:1 y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));"
             "background: qlineargradient( x1:0 y1:0, x2:1 y2:0, stop:0 cyan, stop:1 blue);}")
 
         self.central_layout = QtWidgets.QVBoxLayout(self.central_widget) 
         self.central_layout.setObjectName("central_layout")
 
-        # box_button_layout is city text box and update button as well as a new save and dropbox feature
         self.box_button_layout = QtWidgets.QHBoxLayout()
         self.box_button_layout.setObjectName("box_button_layout")
-        
+
+        self.topLabel = QtWidgets.QLabel(self.central_widget)
+        self.topLabel.setGeometry(QRect(150, 40, 291, 10))
+        self.topLabel.setText("Enter Point A ------------------------------------>")
+        self.box_button_layout.addWidget(self.topLabel)
+
         self.pointA_entry = QtWidgets.QComboBox(self.central_widget)
         self.pointA_entry.addItems(self.names)
-        self.pointA_entry.setGeometry(QRect(580, 240, 191, 31))
+        self.pointA_entry.setGeometry(QRect(80, 240, 191, 31))
         self.pointA_entry.setStyleSheet("background-color: rgb(255,130,0)")
         self.box_button_layout.addWidget(self.pointA_entry)
 
+        self.topLabel1 = QtWidgets.QLabel(self.central_widget)
+        self.topLabel1.setGeometry(QRect(150, 40, 291, 100))
+        self.topLabel1.setText("Enter Point B ------------------------------------>")
+        self.box_button_layout.addWidget(self.topLabel1)
+
         self.pointB_entry = QtWidgets.QComboBox(self.central_widget)
         self.pointB_entry.addItems(self.names)
-        self.pointB_entry.setGeometry(QRect(580, 240, 191, 31))
+        self.pointB_entry.setGeometry(QRect(1, 1, 1, 1))
         self.pointB_entry.setStyleSheet("background-color: rgb(255,130,0)")
         self.box_button_layout.addWidget(self.pointB_entry)
 
         self.find_path_button = QtWidgets.QPushButton(self.central_widget)
-        self.find_path_button.setText("yeet")
-        self.find_path_button.setStyleSheet("border-radius: -20px\n")
-        self.find_path_button.setMinimumSize(QSize(10, 5))
+        self.find_path_button.setText("YEET")
+        self.find_path_button.setStyleSheet("* {color: qlineargradient(spread:pad, x1:0 y1:0, x2:1 y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(0, 0, 0, 255));"
+            "background: qlineargradient( x1:0 y1:0, x2:1 y2:0, stop:0 orange, stop:1 white);}"
+            "border-radius: -20px\n")
+        self.find_path_button.setMinimumSize(QSize(20, 38))
         self.box_button_layout.addWidget(self.find_path_button)
 
         self.settingsButton = QtWidgets.QPushButton() #Button that opens the settings Menu
