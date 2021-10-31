@@ -45,14 +45,16 @@ class Main_UI():
         self.box_button_layout = QtWidgets.QHBoxLayout()
         self.box_button_layout.setObjectName("box_button_layout")
         
-        self.pointA_entry = QtWidgets.QLineEdit(self.central_widget)
-        self.pointA_entry.setStyleSheet("background: white\n")
-        self.pointA_entry.setMinimumSize(QSize(0, 25))
+        self.pointA_entry = QtWidgets.QComboBox(self.central_widget)
+        self.pointA_entry.addItems(self.names)
+        self.pointA_entry.setGeometry(QRect(580, 240, 191, 31))
+        self.pointA_entry.setStyleSheet("background-color: rgb(255,130,0)")
         self.box_button_layout.addWidget(self.pointA_entry)
 
-        self.pointB_entry = QtWidgets.QLineEdit(self.central_widget)
-        self.pointB_entry.setStyleSheet("background: white\n")
-        self.pointB_entry.setMinimumSize(QSize(0, 25))
+        self.pointB_entry = QtWidgets.QComboBox(self.central_widget)
+        self.pointB_entry.addItems(self.names)
+        self.pointB_entry.setGeometry(QRect(580, 240, 191, 31))
+        self.pointB_entry.setStyleSheet("background-color: rgb(255,130,0)")
         self.box_button_layout.addWidget(self.pointB_entry)
 
         self.find_path_button = QtWidgets.QPushButton(self.central_widget)

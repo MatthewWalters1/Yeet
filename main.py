@@ -8,8 +8,6 @@ import map, Dijkstra
 class Main_Window(QMainWindow, Main_UI):
     def __init__(self):
         super(Main_Window, self).__init__()
-
-        self.setup_UI(self)
  
         # 4 roads
         self.roads = []
@@ -387,6 +385,7 @@ class Main_Window(QMainWindow, Main_UI):
 
         # adding the roads to roads
         self.roads.append(self.n1)
+        self.roads.append(self.n1)
         self.roads.append(self.n2)
         self.roads.append(self.n3)
         self.roads.append(self.n4)
@@ -451,7 +450,37 @@ class Main_Window(QMainWindow, Main_UI):
         self.array = Dijkstra.array(self.roads)
         self.thing = map.mapObject("Images/lines/38.png")
 
+        self.names = []
+        x = 0
+        for i in self.roads:
+            x += 1
+            i.name = str(x)
+            self.names.append(str(x))
+        self.names.pop()
+
+        self.setup_UI(self)
         self.view.show()
+
+        self.pointA_entry.activated.connect(self.showroadsA)
+        self.pointB_entry.activated.connect(self.showroadsB)
+
+        self.find_path_button.pressed.connect(self.yeet)
+
+    def showroadsA(self):
+
+        self.curroad = int(self.pointA_entry.currentText())
+        self.scene.addItem(self.roads[self.curroad])
+
+    def showroadsB(self):
+
+        self.curroad = int(self.pointB_entry.currentText())
+        self.scene.addItem(self.roads[self.curroad])
+
+    def yeet(self):
+
+        
+        self.view.show()
+
 
     def settingsClicked(self, event):
         self.settingsMenu = QMessageBox()
