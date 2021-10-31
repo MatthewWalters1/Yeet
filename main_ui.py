@@ -61,8 +61,29 @@ class Main_UI():
         self.find_path_button.setMinimumSize(QSize(10, 5))
         self.box_button_layout.addWidget(self.find_path_button)
 
+        self.settingsButton = QtWidgets.QPushButton() #Button that opens the settings Menu
+        self.settingsButton.setText("Settings")
+        self.settingsButton.setStyleSheet("background-color: lightGray;"
+                                        "border-style: outset;"
+                                        "border-width: 1px;"
+                                        "border-color: black;"
+                                        "min-width: 60 em;"
+                                        "max-width: 60 em;"
+                                        "padding: 6 px;")
+        self.settingsButton.clicked.connect(self.settingsClicked)
+        self.box_button_layout.addWidget(self.settingsButton)
+
         self.central_layout.addLayout(self.box_button_layout)
 
+        self.central_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
+
+        self.scene = QGraphicsScene(-50, -50, 1124, 843)
+        self.view = QGraphicsView(self.scene)
+
+        self.map = map.mapObject("Images/map3.jpg")
+        self.scene.addItem(self.map)
+
+        self.view.setLayout(self.central_layout)
         Main_Window.setCentralWidget(self.central_widget)
             
     def Resize_Text_Label(self, event):

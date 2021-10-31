@@ -2,54 +2,15 @@ from PyQt6.QtWidgets import *
 from PyQt6.QtCore import QTimer, Qt
 from PyQt6.QtGui import QColor, QPalette, QFont, QBrush, QPixmap
 import sys
+from main_ui import Main_UI
 import map, Dijkstra
 
-class MainWindow(QMainWindow):
+class Main_Window(QMainWindow, Main_UI):
     def __init__(self):
-        super().__init__()
+        super(Main_Window, self).__init__()
 
-        # so, this window is actually not used, but it was useful in testing, and its init makes a qgraphicsscene window too
-        self.setGeometry(100, 100, 600, 600) #Set window size
-        palette = self.palette()
-        # background color is Tennessee Orange
-        palette.setColor(QPalette.ColorRole.Window, QColor(255, 130, 0))
-        self.setPalette(palette)
-
-        centralwidget = QWidget() #Create central widget and the main layouts
-        self.buttonLayout = QVBoxLayout()
-        self.mainLayout = QVBoxLayout()
-
-        self.buttonLayout.setAlignment(Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignRight)
-        self.mainLayout.setAlignment(Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignRight)
-
-        self.settingsButton = QPushButton() #Button that opens the settings Menu
-        self.settingsButton.setText("Settings")
-        self.settingsButton.setStyleSheet("background-color: lightGray;"
-                                        "border-style: outset;"
-                                        "border-width: 1px;"
-                                        "border-color: black;"
-                                        "min-width: 60 em;"
-                                        "max-width: 60 em;"
-                                        "padding: 6 px;")
-        self.settingsButton.clicked.connect(self.settingsClicked)
-        self.buttonLayout.addWidget(self.settingsButton)
-
-        self.mainLayout.setContentsMargins(0,0,0,0)
-        self.mainLayout.setSpacing(20)
-
-        self.mainLayout.addLayout(self.buttonLayout)
-
-        centralwidget.setLayout(self.mainLayout)
-        self.setCentralWidget(centralwidget)
-
-        self.scene = QGraphicsScene(-50, -50, 1000, 1000)
-        self.view = QGraphicsView(self.scene)
-
-        self.map = map.mapObject("Images/map3.jpg")
-        self.scene.addItem(self.map)
-
-        self.view.setLayout(self.mainLayout)
-        
+        self.setup_UI(self)
+ 
         # 4 roads
         self.roads = []
         self.n1 = map.road("Images/lines/1.png")
@@ -489,7 +450,6 @@ class MainWindow(QMainWindow):
 
         self.array = Dijkstra.array(self.roads)
         self.thing = map.mapObject("Images/lines/38.png")
-        self.scene.addItem(self.thing)
 
         self.view.show()
 
@@ -547,7 +507,7 @@ class MainWindow(QMainWindow):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
 
-    window = MainWindow()
+    window = Main_Window()
     #window.show()
 
     sys.exit(app.exec())
