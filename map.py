@@ -13,6 +13,7 @@ class road(QGraphicsPixmapItem):
         self.connected = []
         self.setPixmap(QPixmap(imageName))
         self.name = int
+        self.visited = 0
 
 class edge():
     def __init__(self):

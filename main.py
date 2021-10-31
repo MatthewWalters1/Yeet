@@ -1,7 +1,7 @@
 from PyQt6.QtWidgets import *
 from PyQt6.QtCore import QTimer, Qt
 from PyQt6.QtGui import QColor, QPalette, QFont, QBrush, QPixmap
-import sys
+import sys, random
 from main_ui import Main_UI
 import map, Dijkstra
 
@@ -489,7 +489,17 @@ class Main_Window(QMainWindow, Main_UI):
 
     def yeet(self):
         self.view.show()
-
+        self.curroad = self.Alist[0]
+        self.first = self.Alist[0]
+        self.dest = self.Blist[0]
+        self.next = self.curroad.connected[random.randrange(0, len(self.curroad.connected))]
+        self.scene.addItem(self.next)
+        self.curroad = self.next
+        while (self.curroad != self.dest):
+            self.next = self.curroad.connected[random.randrange(0, len(self.curroad.connected))]
+            self.next.visited += 1
+            self.scene.addItem(self.next)
+            self.curroad = self.next
 
     def settingsClicked(self, event):
         self.settingsMenu = QMessageBox()
