@@ -527,6 +527,23 @@ class Main_Window(QMainWindow, Main_UI):
         # self.resumeButton.clicked.connect(self.resumeClicked)
         self.settingsMenu.setEscapeButton(self.resumeButton)
 
+        # Adds a reset button to the pause menu
+        self.resetButton = QPushButton()
+        self.resetButton.setText("Reset")
+        self.resetButton.setFont(QFont("Times", 10, QFont.Weight.Medium))
+        self.resetButton.setStyleSheet("background-color: lightGray;"
+                                             "color: black;"
+                                             "border-style: outset;"
+                                             "border-width: 1px;"
+                                             "border-color: black;"
+                                             "min-width: 50 em;"
+                                             "max-width: 50 em;"
+                                             "min-height: 15 em;"
+                                             "max-height: 15 em;"
+                                             "padding: 6 px;")
+        self.resetButton.clicked.connect(self.resetClicked)
+        self.settingsMenu.addButton(self.resetButton, QMessageBox.ButtonRole.DestructiveRole)
+
         # Adds an exit button to settingsMenu
         self.settingsExitButton = QPushButton()
         self.settingsExitButton.setText("Exit")
@@ -549,6 +566,11 @@ class Main_Window(QMainWindow, Main_UI):
                 
         self.settingsMenu.open()
 
+    def resetClicked(self):
+        QApplication.closeAllWindows()
+
+        self.window = Main_Window()
+    
     def exitClicked(self, event):
         sys.exit()
 
