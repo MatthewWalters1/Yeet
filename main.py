@@ -471,7 +471,8 @@ class Main_Window(QMainWindow, Main_UI):
 
     def showroadsA(self):
         for i in self.Alist:
-            self.scene.removeItem(i)
+            if not i in self.Blist:
+                self.scene.removeItem(i)
             self.Alist.remove(i)
 
         self.curroad = int(self.pointA_entry.currentText())
@@ -480,7 +481,8 @@ class Main_Window(QMainWindow, Main_UI):
 
     def showroadsB(self):
         for i in self.Blist:
-            self.scene.removeItem(i)
+            if not i in self.Alist:
+                self.scene.removeItem(i)
             self.Blist.remove(i)
 
         self.curroad = int(self.pointB_entry.currentText())
