@@ -461,24 +461,33 @@ class Main_Window(QMainWindow, Main_UI):
         self.setup_UI(self)
         self.view.show()
 
+        self.Alist = []
+        self.Blist = []
+
         self.pointA_entry.activated.connect(self.showroadsA)
         self.pointB_entry.activated.connect(self.showroadsB)
 
         self.find_path_button.pressed.connect(self.yeet)
 
     def showroadsA(self):
+        for i in self.Alist:
+            self.scene.removeItem(i)
+            self.Alist.remove(i)
 
         self.curroad = int(self.pointA_entry.currentText())
+        self.Alist.append(self.roads[self.curroad])
         self.scene.addItem(self.roads[self.curroad])
 
     def showroadsB(self):
+        for i in self.Blist:
+            self.scene.removeItem(i)
+            self.Blist.remove(i)
 
         self.curroad = int(self.pointB_entry.currentText())
+        self.Blist.append(self.roads[self.curroad])
         self.scene.addItem(self.roads[self.curroad])
 
     def yeet(self):
-
-        
         self.view.show()
 
 
